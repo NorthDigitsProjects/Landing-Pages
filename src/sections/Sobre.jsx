@@ -270,7 +270,7 @@ const Sobre = () => {
 
             <div id="sobre-assinatura" style={styles.assinaturaContainer}>
               <img
-                src="/CEO-north.webp"
+                src="/ceo.webp"
                 loading="lazy"
                 alt="Inocêncio Nanlelo - CEO"
                 style={{
