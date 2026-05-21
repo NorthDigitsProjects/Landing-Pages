@@ -58,7 +58,7 @@ const Header = () => {
       <div className="nd-topbar" ref={topbarRef}>
         <div className="nd-topbar-inner">
           <div className="nd-topbar-info">
-            <span><FiPhone size={11} /> +258 84 123 4567</span>
+            <span><FiPhone size={11} /> +258 84 890 2766</span>
             <span><FiMail size={11} /> geral@northdigits.co.mz</span>
             <span className="nd-topbar-address"><FiMapPin size={11} /> Av. Agostinho Neto, Maputo</span>
           </div>
