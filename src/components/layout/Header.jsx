@@ -141,7 +141,7 @@ const Header = () => {
         </div>
 
         <div className="nd-drawer-contact">
-          <p><FiPhone size={12} /> +258 84 123 4567</p>
+          <p><FiPhone size={12} /> +258 84 890 2766</p>
           <p><FiMail size={12} /> geral@northdigits.co.mz</p>
           <p><FiMapPin size={12} /> Av. Agostinho Neto, 1562 Terraço Malhangalene, Maputo</p>
         </div>

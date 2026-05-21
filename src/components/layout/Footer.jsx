@@ -53,7 +53,7 @@ const Footer = () => {
             <FaEnvelope /> info@northdigits.co.mz
           </p>
           <p style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.3rem', color: textColor, fontSize: '0.85rem' }}>
-            <FaPhoneAlt /> +258 84 000 0000
+            <FaPhoneAlt /> +258 84 890 2766
           </p>
           <div className="social-icons" style={{ display: 'flex', gap: '1rem', marginTop: '0.6rem' }}>
             <a href="https://wa.me/258840000000" target="_blank" rel="noopener noreferrer" style={{ color: linkColor, transition: 'color 0.2s' }}
