@@ -6,12 +6,12 @@ const Parceiros = () => {
   const isDark = theme === 'dark';
 
   const parceiros = [
-    { id: 1, img: "/parceiro1.jpeg", nome: "LDC Business e Consultorias" },
-    { id: 2, img: "/parceiro2.jpeg", nome: "TechBSS" },
-    { id: 3, img: "/parceiro1.jpeg", nome: "LDC Business e Consultorias" },
-    { id: 4, img: "/parceiro2.jpeg", nome: "TechBSS" },
-    { id: 5, img: "/parceiro1.jpeg", nome: "LDC Business e Consultorias" },
-    { id: 6, img: "/parceiro2.jpeg", nome: "TechBSS" },
+    { id: 1, img: "/parceiro1.webp", nome: "LDC Business e Consultorias" },
+    { id: 2, img: "/parceiro2.webp", nome: "TechBSS" },
+    { id: 3, img: "/parceiro1.webp", nome: "LDC Business e Consultorias" },
+    { id: 4, img: "/parceiro2.webp", nome: "TechBSS" },
+    { id: 5, img: "/parceiro1.webp", nome: "LDC Business e Consultorias" },
+    { id: 6, img: "/parceiro2.webp", nome: "TechBSS" },
   ];
 
   const cardWidth = 150;

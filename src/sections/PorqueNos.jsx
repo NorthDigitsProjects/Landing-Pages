@@ -154,7 +154,7 @@ const PorqueNos = () => {
 
           
           <div className="pn-image-side">
-            <img src="/equipe.jpg" alt="Equipa North Digits" />
+            <img src="/equipeIT.webp" alt="Equipa North Digits" />
           </div>
 
        

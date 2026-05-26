@@ -2,7 +2,7 @@ import { useState, useLayoutEffect, useRef, useEffect, useCallback } from 'react
 import { FiPhone, FiMail, FiMapPin, FiSun, FiMoon } from 'react-icons/fi';
 import { FaWhatsapp, FaFacebook, FaInstagram, FaLinkedin } from 'react-icons/fa';
 import { useTheme } from '../../context/ThemeContext';
-import './Header.css'; // <-- CSS externo
+import './Header.css'; 
 
 const Header = () => {
   const [menuAberto, setMenuAberto] = useState(false);
@@ -58,7 +58,7 @@ const Header = () => {
       <div className="nd-topbar" ref={topbarRef}>
         <div className="nd-topbar-inner">
           <div className="nd-topbar-info">
-            <span><FiPhone size={11} /> +258 84 123 4567</span>
+            <span><FiPhone size={11} /> +258 84 890 2766</span>
             <span><FiMail size={11} /> geral@northdigits.co.mz</span>
             <span className="nd-topbar-address"><FiMapPin size={11} /> Av. Agostinho Neto, Maputo</span>
           </div>
@@ -70,12 +70,12 @@ const Header = () => {
           </div>
         </div>
       </div>
-
+        {/*desktop*/}
       <header className="cabecalho" ref={headerRef}>
         <div className="nd-header-inner">
           <div className="nd-logo">
             <a href="#home">
-              <img src="/SVG/8Artboard 8.svg" alt="North Digits" height="70" style={{ width: 'auto' }} />
+              <img src="/logo1.webp" alt="North Digits" className="nd-logo-img" />
             </a>
           </div>
 
@@ -87,9 +87,7 @@ const Header = () => {
 
           <div className="nd-cta-desktop">
             <a href="#Contacto" className="nd-rainbow-btn">Cotação</a>
-            <button onClick={toggleTheme} className="nd-theme-btn" aria-label="Alternar tema">
-              {theme === 'light' ? <FiMoon size={16} /> : <FiSun size={16} />}
-            </button>
+            
           </div>
 
           <button
@@ -108,16 +106,14 @@ const Header = () => {
       {menuAberto && (
         <div className="nd-overlay nd-overlay--visible" onClick={fecharMenu} aria-hidden="true" />
       )}
-
+      {/*mobile*/}
       <nav className={`nd-drawer ${menuAberto ? 'nd-drawer--open' : ''}`} aria-label="Menu mobile">
         <div className="nd-drawer-header">
           <div className="nd-drawer-logo">
-            <img src="/SVG/4Artboard 4.svg" alt="North Digits" height="60" style={{ width: 'auto' }} />
+          <img src="public/logo2.webp" alt="North Digits" className="nd-drawer-logo-img" />
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <button onClick={toggleTheme} className="nd-theme-btn-drawer" aria-label="Alternar tema">
-              {theme === 'light' ? <FiMoon size={15} /> : <FiSun size={15} />}
-            </button>
+            
             <button className="nd-drawer-close" onClick={fecharMenu} aria-label="Fechar menu">✕</button>
           </div>
         </div>
@@ -141,7 +137,7 @@ const Header = () => {
         </div>
 
         <div className="nd-drawer-contact">
-          <p><FiPhone size={12} /> +258 84 123 4567</p>
+          <p><FiPhone size={12} /> +258 84 890 2766</p>
           <p><FiMail size={12} /> geral@northdigits.co.mz</p>
           <p><FiMapPin size={12} /> Av. Agostinho Neto, 1562 Terraço Malhangalene, Maputo</p>
         </div>

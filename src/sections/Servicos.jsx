@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import useScrollReveal from '../hooks/useScrollReveal';
+
 
 const servicosLista = [
   {
     titulo: 'Desenvolvimento de Software Personalizado',
-    imagem: '/Desenvolvimendo-software.jpg',
+    imagem: '/Desenvolvimendo-software.webp',
     descricaoItens: [
       'Sites web responsivos e otimizados',
       'Aplicações mobile (iOS/Android)',
@@ -14,7 +14,7 @@ const servicosLista = [
   },
   {
     titulo: 'Consultoria e Transformação Digital',
-    imagem: '/Consultoria.jpg',
+    imagem: '/Consultoria.webp',
     descricaoItens: [
       'Análise estratégica de negócios',
       'Modernização de processos manuais',
@@ -24,7 +24,7 @@ const servicosLista = [
   },
   {
     titulo: 'Análise de Dados & Business Intelligence',
-    imagem: '/Analise-dados.jpg',
+    imagem: '/Analisedados.webp',
     descricaoItens: [
       'Dashboards interativos e relatórios',
       'Integração de fontes de dados',
@@ -34,7 +34,7 @@ const servicosLista = [
   },
   {
     titulo: 'Literacia Digital & Treinamento',
-    imagem: '/treinamento.jpg',
+    imagem: '/treinamento.webp',
     descricaoItens: [
       'Formacão e educação digital',
       'Workshops de segurança da informação',
@@ -44,7 +44,7 @@ const servicosLista = [
   },
   {
     titulo: 'Soluções Agri-Tech MPME',
-    imagem: '/Agri-tech.jpg',
+    imagem: '/Agri-tech.webp',
     descricaoItens: [
       'Gestão de produção e rastreabilidade',
       'Marketplaces para produtos agrícolas',
@@ -100,12 +100,12 @@ const FlipCard = ({ titulo, imagem, descricaoItens }) => {
 };
 
 const Servicos = () => {
-  const revealRef = useScrollReveal();
+
   const [showAll, setShowAll] = useState(false);
   const displayedServices = showAll ? servicosLista : servicosLista.slice(0, 3);
 
   return (
-    <section id="servicos" className="servicos reveal" ref={revealRef}>
+    <section id="servicos" className="servicos reveal" >
       <div className="container">
         <div className="servicos-cabecalho">
           <h2 className="servicos-titulo">Nossos Serviços</h2>

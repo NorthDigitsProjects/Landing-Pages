@@ -16,12 +16,11 @@ const Footer = () => {
     <footer className="rodape" style={{ backgroundColor: footerBg }}>
       <div className="rodape-conteudo" style={{ padding: '40px 24px' }}>
         <div className="footer-logo-container">
-          <img 
-            src="/SVG/3Artboard 3.svg" 
-            alt="North Digits" 
-            className="footer-logo"
-            style={{ height: '100px', width: 'auto', marginBottom: '0.5rem', display: 'block' }} 
-          />
+  <img 
+  src="/SVG/3Artboard 3.svg" 
+  alt="North Digits" 
+  className="footer-logo"
+/>
           <h3 className="rodape-titulo" style={{ color: titleColor, marginTop: '0.1rem' }}>North Digits</h3>
           <p style={{ marginTop: '0.4rem', lineHeight: '1.4', fontSize: '0.85rem', color: textColor }}>
             Transformação digital ponta-a-ponta, desenvolvimento de software sob medida.
@@ -80,7 +79,7 @@ const Footer = () => {
             style={{ display: 'block', borderRadius: '12px', overflow: 'hidden', textDecoration: 'none' }}
           >
             <img 
-              src="/Localizacao.jpg" 
+              src="/Localizacao.webp" 
               alt="Localização North Digits"
               style={{ width: '100%', height: 'auto', display: 'block' }}
               loading="lazy"
