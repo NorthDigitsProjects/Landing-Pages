@@ -167,36 +167,58 @@ const AnimatedButtons = () => {
       transform: show ? 'translateY(0)' : 'translateY(16px)',
       transition: 'opacity 0.6s ease, transform 0.6s ease',
     }}>
-      <a href="#servicos" className="botao-primario">Explorar Mais →</a>
+      <a href="#servicos" className="botao-primario">Explorar Mais </a>
       <a href="#servicos" className="botao-secundario">Ver Serviços</a>
     </div>
   );
 };
 
-const Hero = () => (
-  <section id="home" className="hero">
-    <SubtleParticles />
-    <div className="hero-conteudo">
-      <TypewriterBadge />
-      <AnimatedTitle />
-      <p className="hero-descricao">
-        Criamos Soluções Digitais para impulsionar o crescimento do seu negócio,
-        fortalecer a sua presença online e transformar ideias em resultados reais.
-      </p>
-      <AnimatedButtons />
-    </div>
-    <style>{`
-      .hero-cursor {
-        display: inline-block;
-        animation: blink 0.7s step-end infinite;
-        color: #ffc30d;
-        margin-left: 1px;
-      }
-      @keyframes blink {
-        0%,100%{opacity:1} 50%{opacity:0}
-      }
-    `}</style>
-  </section>
-);
+const Hero = () => {
+  const heroRef = useRef(null);
+
+  useEffect(() => {
+    const el = heroRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.style.backgroundImage = "url('/data-center-programmer.webp')";
+          observer.disconnect();
+        }
+      },
+      { rootMargin: '200px' }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section id="home" className="hero" ref={heroRef}>
+      <SubtleParticles />
+      <div className="hero-conteudo">
+        <TypewriterBadge />
+        <AnimatedTitle />
+        <p className="hero-descricao">
+          Criamos Soluções Digitais para impulsionar o crescimento do seu negócio,
+          fortalecer a sua presença online e transformar ideias em resultados reais.
+        </p>
+        <AnimatedButtons />
+      </div>
+      <style>{`
+        .hero-cursor {
+          display: inline-block;
+          animation: blink 0.7s step-end infinite;
+          color: #ffc30d;
+          margin-left: 1px;
+        }
+        @keyframes blink {
+          0%,100%{opacity:1} 50%{opacity:0}
+        }
+      `}</style>
+    </section>
+  );
+};
 
 export default Hero;

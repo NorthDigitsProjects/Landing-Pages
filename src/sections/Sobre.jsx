@@ -1,99 +1,29 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useTheme } from '../context/ThemeContext';
 
-const useCountUp = (target, duration = 1800, start = false) => {
-  const [value, setValue] = useState(0);
+/* ── Componente NumberTicker (anima um número de 0 até o valor alvo) ── */
+const NumberTicker = ({ value, duration = 1600, start = false }) => {
+  const [count, setCount] = useState(0);
 
   useEffect(() => {
     if (!start) return;
     let startTime = null;
-    const easeOutExpo = (t) => (t === 1 ? 1 : 1 - Math.pow(2, -10 * t));
+    const easeOutQuart = (t) => 1 - Math.pow(1 - t, 4);
 
     const step = (timestamp) => {
       if (!startTime) startTime = timestamp;
       const progress = Math.min((timestamp - startTime) / duration, 1);
-      setValue(Math.floor(easeOutExpo(progress) * target));
+      setCount(Math.floor(easeOutQuart(progress) * value));
       if (progress < 1) requestAnimationFrame(step);
-      else setValue(target);
+      else setCount(value);
     };
-
     requestAnimationFrame(step);
-  }, [start, target, duration]);
+  }, [start, value, duration]);
 
-  return value;
-};
-
-/* ── Card de número ── */
-const StatCard = ({ target, suffix, label, delay, started, isDark }) => {
-  const value = useCountUp(target, 1600, started);
-
-  return (
-    <div
-      style={{
-        flex: '1',
-        minWidth: '110px',
-        background: isDark
-          ? 'linear-gradient(135deg, #1e293b, #0f172a)'
-          : 'linear-gradient(135deg, #f0f7ff, #e8f0ff)',
-        borderRadius: '16px',
-        padding: '20px 16px',
-        textAlign: 'center',
-        border: `1px solid ${isDark ? '#334155' : '#dbeafe'}`,
-        boxShadow: isDark
-          ? '0 4px 20px rgba(0,0,0,0.3)'
-          : '0 4px 20px rgba(37,99,235,0.08)',
-        transition: 'transform 0.3s ease, box-shadow 0.3s ease',
-        animationDelay: `${delay}ms`,
-      }}
-      onMouseEnter={(e) => {
-        e.currentTarget.style.transform = 'translateY(-4px)';
-        e.currentTarget.style.boxShadow = isDark
-          ? '0 12px 30px rgba(0,0,0,0.4)'
-          : '0 12px 30px rgba(37,99,235,0.15)';
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.transform = 'translateY(0)';
-        e.currentTarget.style.boxShadow = isDark
-          ? '0 4px 20px rgba(0,0,0,0.3)'
-          : '0 4px 20px rgba(37,99,235,0.08)';
-      }}
-    >
-      <span
-        style={{
-          fontSize: 'clamp(1.8rem, 4vw, 2.4rem)',
-          fontWeight: '900',
-          background: isDark
-            ? 'linear-gradient(135deg, #60a5fa, #93c5fd)'
-            : 'linear-gradient(135deg, #2563eb, #3b82f6)',
-          WebkitBackgroundClip: 'text',
-          WebkitTextFillColor: 'transparent',
-          backgroundClip: 'text',
-          lineHeight: '1',
-          display: 'block',
-          letterSpacing: '-1px',
-        }}
-      >
-        {value}{suffix}
-      </span>
-      <span
-        style={{
-          fontSize: '10px',
-          fontWeight: '700',
-          color: '#94a3b8',
-          textTransform: 'uppercase',
-          letterSpacing: '1.5px',
-          marginTop: '8px',
-          display: 'block',
-        }}
-      >
-        {label}
-      </span>
-    </div>
-  );
+  return <>{count}</>;
 };
 
 const Sobre = () => {
-
   const { theme } = useTheme();
   const [modalAberto, setModalAberto] = useState(false);
   const [isHover, setIsHover] = useState(false);
@@ -102,7 +32,7 @@ const Sobre = () => {
 
   const isDark = theme === 'dark';
 
-  /* Inicia contadores só quando os stats entram no ecrã */
+  // Inicia os contadores quando os indicadores entrarem na tela
   useEffect(() => {
     const el = statsRef.current;
     if (!el) return;
@@ -120,9 +50,9 @@ const Sobre = () => {
   }, []);
 
   const stats = [
-    { target: 8,  suffix: '+', label: 'Membros do Time',  delay: 0   },
-    { target: 20, suffix: '+', label: 'Clientes Felizes', delay: 150 },
-    { target: 99, suffix: '%', label: 'Satisfação',       delay: 300 },
+    { target: 8,  suffix: '+', label: 'Membros do Time' },
+    { target: 20, suffix: '+', label: 'Clientes Felizes' },
+    { target: 99, suffix: '%', label: 'Satisfação' },
   ];
 
   const styles = {
@@ -191,6 +121,38 @@ const Sobre = () => {
       textAlign: 'justify',
       textJustify: 'inter-word',
       width: '100%',
+    },
+    statsContainer: {
+      display: 'flex',
+      justifyContent: 'center',   // centraliza horizontalmente
+      alignItems: 'center',
+      gap: '48px',                 // espaçamento entre os itens
+      flexWrap: 'wrap',
+      marginBottom: '28px',
+      paddingTop: '24px',
+      borderTop: `1px solid ${isDark ? '#1e293b' : '#f1f5f9'}`,
+    },
+    statItem: {
+      textAlign: 'center',
+      minWidth: '100px',
+    },
+    statNumber: {
+      fontSize: 'clamp(2rem, 5vw, 3rem)',
+      fontWeight: '600',
+      letterSpacing: '-0.02em',   // tracking-tighter
+      fontFamily: "'Inter', 'Segoe UI', monospace",
+      color: isDark ? '#60a5fa' : '#2563eb',
+      lineHeight: '1.2',
+      display: 'block',
+    },
+    statLabel: {
+      fontSize: '11px',
+      fontWeight: '700',
+      color: '#94a3b8',
+      textTransform: 'uppercase',
+      letterSpacing: '1.5px',
+      marginTop: '6px',
+      display: 'block',
     },
     assinaturaContainer: {
       display: 'flex',
@@ -262,18 +224,22 @@ const Sobre = () => {
           #sobre-subtitulo { text-align: left !important; }
           #sobre-titulo { text-align: left !important; }
           #sobre-assinatura { justify-content: center !important; }
+          .stats-row { gap: 24px !important; }
         }
       `}</style>
 
-      <section  id="sobre" className="reveal" style={styles.section}>
+      <section id="sobre" className="reveal" style={styles.section}>
         <div id="sobre-inner" style={styles.innerContainer}>
-
-       
           <div id="sobre-imagem" style={styles.containerImagem}>
-            <img src="/equipe.webp" alt="Equipe North Digits" style={styles.imagemUnica} />
+            <img 
+              src="/equipe.webp" 
+              alt="Equipe North Digits" 
+              style={styles.imagemUnica}
+              loading="lazy"
+              decoding="async"
+            />
           </div>
 
-       
           <div id="sobre-conteudo" style={styles.conteudo}>
             <span id="sobre-subtitulo" style={styles.subtitulo}>// SOBRE NÓS</span>
 
@@ -291,28 +257,16 @@ const Sobre = () => {
               crescimento e resultados sustentáveis.
             </p>
 
-            {/* Stats */}
-            <div
-              ref={statsRef}
-              style={{
-                display: 'flex',
-                gap: '12px',
-                flexWrap: 'wrap',
-                marginBottom: '28px',
-                paddingTop: '24px',
-                borderTop: `1px solid ${isDark ? '#1e293b' : '#f1f5f9'}`,
-              }}
-            >
-              {stats.map((s) => (
-                <StatCard
-                  key={s.label}
-                  target={s.target}
-                  suffix={s.suffix}
-                  label={s.label}
-                  delay={s.delay}
-                  started={statsStarted}
-                  isDark={isDark}
-                />
+            {/* Indicadores centralizados sem cards */}
+            <div ref={statsRef} className="stats-row" style={styles.statsContainer}>
+              {stats.map((stat, idx) => (
+                <div key={idx} style={styles.statItem}>
+                  <span style={styles.statNumber}>
+                    <NumberTicker value={stat.target} duration={1600} start={statsStarted} />
+                    {stat.suffix}
+                  </span>
+                  <span style={styles.statLabel}>{stat.label}</span>
+                </div>
               ))}
             </div>
 
@@ -325,6 +279,8 @@ const Sobre = () => {
                 onMouseEnter={() => setIsHover(true)}
                 onMouseLeave={() => setIsHover(false)}
                 onClick={() => setModalAberto(true)}
+                loading="lazy"
+                decoding="async"
               />
               <div style={styles.assinaturaTexto}>
                 <span style={styles.nome}>Inocêncio Nanlelo</span>
@@ -342,6 +298,8 @@ const Sobre = () => {
               alt="Inocêncio Nanlelo - CEO ampliado"
               style={styles.modalImagem}
               onClick={(e) => e.stopPropagation()}
+              loading="lazy"
+              decoding="async"
             />
           </div>
         )}

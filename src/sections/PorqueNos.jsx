@@ -151,13 +151,16 @@ const PorqueNos = () => {
 
       <section id="porque-nos">
         <div className="pn-container">
-
           
           <div className="pn-image-side">
-            <img src="/equipeIT.webp" alt="Equipa North Digits" />
+            <img 
+              src="/equipeIT.webp" 
+              alt="Equipa North Digits" 
+              loading="lazy" 
+              decoding="async"
+            />
           </div>
 
-       
           <div className="pn-content-side">
             <div className="pn-eyebrow">
               <span style={{ fontSize: '1.3rem', fontWeight: 900 }}>//</span>

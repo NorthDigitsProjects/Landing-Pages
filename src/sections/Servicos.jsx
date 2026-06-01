@@ -1,6 +1,5 @@
 import { useState } from 'react';
 
-
 const servicosLista = [
   {
     titulo: 'Desenvolvimento de Software Personalizado',
@@ -80,7 +79,13 @@ const FlipCard = ({ titulo, imagem, descricaoItens }) => {
     >
       <div className={`flip-card-inner ${flipped ? 'flipped' : ''}`}>
         <div className="flip-card-front">
-          <img src={imagem} alt={titulo} className="flip-card-image" />
+          <img 
+            src={imagem} 
+            alt={titulo} 
+            className="flip-card-image" 
+            loading="lazy" 
+            decoding="async"
+          />
           <div className="flip-card-title">{titulo}</div>
         </div>
         <div className="flip-card-back">
@@ -100,12 +105,11 @@ const FlipCard = ({ titulo, imagem, descricaoItens }) => {
 };
 
 const Servicos = () => {
-
   const [showAll, setShowAll] = useState(false);
   const displayedServices = showAll ? servicosLista : servicosLista.slice(0, 3);
 
   return (
-    <section id="servicos" className="servicos reveal" >
+    <section id="servicos" className="servicos reveal">
       <div className="container">
         <div className="servicos-cabecalho">
           <h2 className="servicos-titulo">Nossos Serviços</h2>

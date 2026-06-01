@@ -146,13 +146,13 @@ const Contacto = () => {
   const [focusedField, setFocusedField] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const loaderSteps = [
-    { text: "Verificando dados", duration: 1500, afterText: "Dados verificados" },
-    { text: "Enviando mensagem", duration: 2000, afterText: "Mensagem enviada" },
-    { text: "Processando solicitação", duration: 1800, afterText: "Solicitação processada" },
-    { text: "Confirmando cotação", duration: 1200, afterText: "Cotação confirmada" },
-    { text: "Finalizando", duration: 1000, afterText: "Finalizado", action: () => handleLoaderComplete() },
-  ];
+const loaderSteps = [
+  { text: "A validar informações", duration: 1500, afterText: "Validação concluída" },
+  { text: "A registar pedido", duration: 2000, afterText: "Pedido registado" },
+  { text: "A processar dados", duration: 1800, afterText: "Processamento concluído" },
+  { text: "A gerar cotação", duration: 1200, afterText: "Cotação gerada" },
+  { text: "A finalizar processo", duration: 1000, afterText: "Concluído", action: () => handleLoaderComplete() },
+];
 
   const handleLoaderComplete = () => {
     setIsLoading(false);

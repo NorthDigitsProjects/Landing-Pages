@@ -48,7 +48,6 @@ footer, main {
 .hero {
   height: 100vh;
   min-height: 500px;
-  background-image: url('/data-center-programmer.webp');
   background-size: cover;
   background-position: center;
   position: relative;
