@@ -235,7 +235,7 @@ const Servicos = () => {
           padding: 0.6rem 0.8rem;
           border-radius: 40px;
           cursor: pointer;
-          transition: all 0.2s ease;
+          transition: transform 0.2s ease, opacity 0.2s ease, background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
           margin-top: auto;
           width: 100%;
           text-align: center;

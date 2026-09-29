@@ -47,7 +47,7 @@ const SubtleParticles = () => {
       [167, 220, 255],
     ];
 
-    const dots = Array.from({ length: 55 }, () => {
+    const dots = Array.from({ length: window.innerWidth < 768 ? 25 : 55 }, () => {
       const color = COLORS[Math.floor(Math.random() * COLORS.length)];
       return {
         x:     Math.random() * canvas.width,
@@ -60,7 +60,9 @@ const SubtleParticles = () => {
       };
     });
 
+    let running = false;
     const draw = () => {
+      if (!running) return;
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       for (let i = 0; i < dots.length; i++) {
@@ -93,10 +95,28 @@ const SubtleParticles = () => {
 
       raf = requestAnimationFrame(draw);
     };
-    draw();
+
+    let inView = true;
+    const update = () => {
+      const should = inView && !document.hidden;
+      if (should && !running) {
+        running = true;
+        raf = requestAnimationFrame(draw);
+      } else if (!should && running) {
+        running = false;
+        cancelAnimationFrame(raf);
+      }
+    };
+    const io = new IntersectionObserver(([e]) => { inView = e.isIntersecting; update(); });
+    io.observe(canvas);
+    document.addEventListener('visibilitychange', update);
+    update();
 
     return () => {
+      running = false;
       cancelAnimationFrame(raf);
+      io.disconnect();
+      document.removeEventListener('visibilitychange', update);
       window.removeEventListener('resize', resize);
     };
   }, []);
@@ -174,28 +194,8 @@ const AnimatedButtons = () => {
 };
 
 const Hero = () => {
-  const heroRef = useRef(null);
-
-  useEffect(() => {
-    const el = heroRef.current;
-    if (!el) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.style.backgroundImage = "url('/data-center-programmer.webp')";
-          observer.disconnect();
-        }
-      },
-      { rootMargin: '200px' }
-    );
-
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <section id="home" className="hero" ref={heroRef}>
+    <section id="home" className="hero">
       <SubtleParticles />
       <div className="hero-conteudo">
         <TypewriterBadge />

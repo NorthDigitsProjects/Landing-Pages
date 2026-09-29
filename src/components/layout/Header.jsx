@@ -2,7 +2,7 @@ import { useState, useLayoutEffect, useRef, useEffect, useCallback } from 'react
 import { FiPhone, FiMail, FiMapPin, FiHome, FiUsers, FiGrid, FiMail as FiMailIcon } from 'react-icons/fi';
 import { FaWhatsapp, FaFacebook, FaInstagram, FaLinkedin } from 'react-icons/fa';
 import { useTheme } from '../../context/ThemeContext';
-import confetti from 'canvas-confetti';
+
 import './Header.css';
 
 const Header = () => {
@@ -30,7 +30,8 @@ const Header = () => {
     setMenuAberto(false);
   }, []);
 
-  const fireConfetti = () => {
+  const fireConfetti = async () => {
+    const { default: confetti } = await import('canvas-confetti');
     confetti({
       particleCount: 120,
       spread: 80,
