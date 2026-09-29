@@ -80,7 +80,6 @@ const Parceiros = () => {
     lineHeight: 1.3,
   };
 
-
   const leftGradient = isDark
     ? 'linear-gradient(to right, #0f172a, transparent)'
     : 'linear-gradient(to right, white, transparent)';
@@ -127,8 +126,9 @@ const Parceiros = () => {
                 <img 
                   src={parceiro.img} 
                   alt={parceiro.nome} 
+                  style={logoImgStyle}
                   loading="lazy"
-                  style={logoImgStyle} 
+                  decoding="async"
                 />
                 <span style={textSpanStyle}>
                   {parceiro.nome}

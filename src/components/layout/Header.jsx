@@ -1,8 +1,9 @@
 import { useState, useLayoutEffect, useRef, useEffect, useCallback } from 'react';
-import { FiPhone, FiMail, FiMapPin, FiSun, FiMoon } from 'react-icons/fi';
+import { FiPhone, FiMail, FiMapPin, FiHome, FiUsers, FiGrid, FiMail as FiMailIcon } from 'react-icons/fi';
 import { FaWhatsapp, FaFacebook, FaInstagram, FaLinkedin } from 'react-icons/fa';
 import { useTheme } from '../../context/ThemeContext';
-import './Header.css'; // <-- CSS externo
+import confetti from 'canvas-confetti';
+import './Header.css';
 
 const Header = () => {
   const [menuAberto, setMenuAberto] = useState(false);
@@ -17,9 +18,39 @@ const Header = () => {
     { nome: 'Contacto', href: '#contacto' },
   ];
 
+  // Links com ícones apenas para o drawer
+  const drawerLinks = [
+    { nome: 'Início', href: '#home', icon: <FiHome size={20} /> },
+    { nome: 'Sobre', href: '#sobre', icon: <FiUsers size={20} /> },
+    { nome: 'Serviços', href: '#servicos', icon: <FiGrid size={20} /> },
+    { nome: 'Contacto', href: '#contacto', icon: <FiMailIcon size={20} /> },
+  ];
+
   const fecharMenu = useCallback(() => {
     setMenuAberto(false);
   }, []);
+
+  const fireConfetti = () => {
+    confetti({
+      particleCount: 120,
+      spread: 80,
+      origin: { y: 0.6 },
+      startVelocity: 18,
+      colors: ['#ffc30d', '#020BB2', '#ffffff', '#00aaff'],
+      decay: 0.9,
+      ticks: 200,
+    });
+  };
+
+  const handleCotacaoClick = (e) => {
+    e.preventDefault();
+    fireConfetti();
+    const contactSection = document.getElementById('contacto');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+    }
+    fecharMenu();
+  };
 
   useLayoutEffect(() => {
     const ajustarPosicoes = () => {
@@ -42,7 +73,9 @@ const Header = () => {
     } else {
       document.body.style.overflow = '';
     }
-    return () => { document.body.style.overflow = ''; };
+    return () => {
+      document.body.style.overflow = '';
+    };
   }, [menuAberto]);
 
   useEffect(() => {
@@ -55,6 +88,7 @@ const Header = () => {
 
   return (
     <>
+      {/* Topbar (inalterado) */}
       <div className="nd-topbar" ref={topbarRef}>
         <div className="nd-topbar-inner">
           <div className="nd-topbar-info">
@@ -71,30 +105,32 @@ const Header = () => {
         </div>
       </div>
 
+      {/* Desktop – SEM ALTERAÇÕES (logo com imagem, links sem ícones) */}
       <header className="cabecalho" ref={headerRef}>
         <div className="nd-header-inner">
           <div className="nd-logo">
             <a href="#home">
-              <img src="/SVG/8Artboard 8.svg" alt="North Digits" height="70" style={{ width: 'auto' }} />
+              <img src="/logo1.webp" alt="North Digits" className="nd-logo-img" />
             </a>
           </div>
 
           <nav className="nd-nav-desktop">
-            {links.map(link => (
-              <a key={link.nome} href={link.href}>{link.nome}</a>
+            {links.map((link) => (
+              <a key={link.nome} href={link.href}>
+                {link.nome}
+              </a>
             ))}
           </nav>
 
           <div className="nd-cta-desktop">
-            <a href="#Contacto" className="nd-rainbow-btn">Cotação</a>
-            <button onClick={toggleTheme} className="nd-theme-btn" aria-label="Alternar tema">
-              {theme === 'light' ? <FiMoon size={16} /> : <FiSun size={16} />}
-            </button>
+            <a href="#contacto" className="nd-rainbow-btn" onClick={handleCotacaoClick}>
+              Cotação
+            </a>
           </div>
 
           <button
             className={`nd-hamburger ${menuAberto ? 'nd-hamburger--open' : ''}`}
-            onClick={() => setMenuAberto(prev => !prev)}
+            onClick={() => setMenuAberto((prev) => !prev)}
             aria-label={menuAberto ? 'Fechar menu' : 'Abrir menu'}
             aria-expanded={menuAberto}
           >
@@ -109,21 +145,22 @@ const Header = () => {
         <div className="nd-overlay nd-overlay--visible" onClick={fecharMenu} aria-hidden="true" />
       )}
 
+
       <nav className={`nd-drawer ${menuAberto ? 'nd-drawer--open' : ''}`} aria-label="Menu mobile">
         <div className="nd-drawer-header">
+     
           <div className="nd-drawer-logo">
-            <img src="/SVG/4Artboard 4.svg" alt="North Digits" height="60" style={{ width: 'auto' }} />
+            <span style={{ fontWeight: 'bold', fontSize: '1.2rem', color: 'Black' }}>Menu</span>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <button onClick={toggleTheme} className="nd-theme-btn-drawer" aria-label="Alternar tema">
-              {theme === 'light' ? <FiMoon size={15} /> : <FiSun size={15} />}
+            <button className="nd-drawer-close" onClick={fecharMenu} aria-label="Fechar menu">
+              ✕
             </button>
-            <button className="nd-drawer-close" onClick={fecharMenu} aria-label="Fechar menu">✕</button>
           </div>
         </div>
 
         <div className="nd-drawer-links">
-          {links.map((link, i) => (
+          {drawerLinks.map((link, i) => (
             <a
               key={link.nome}
               href={link.href}
@@ -131,13 +168,16 @@ const Header = () => {
               style={{ animationDelay: `${i * 60}ms` }}
               onClick={fecharMenu}
             >
-              {link.nome}
+              {link.icon}
+              <span>{link.nome}</span>
             </a>
           ))}
         </div>
 
         <div className="nd-drawer-cta">
-          <a href="#contacto" className="nd-drawer-btn" onClick={fecharMenu}>Solicitar Cotação</a>
+          <a href="#contacto" className="nd-drawer-btn" onClick={handleCotacaoClick}>
+             Cotação
+          </a>
         </div>
 
         <div className="nd-drawer-contact">

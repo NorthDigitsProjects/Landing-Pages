@@ -48,7 +48,6 @@ footer, main {
 .hero {
   height: 100vh;
   min-height: 500px;
-  background-image: url('/back-home.webp');
   background-size: cover;
   background-position: center;
   position: relative;
@@ -323,7 +322,6 @@ footer, main {
   transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
               transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
-
 .reveal-visible {
   opacity: 1;
   transform: translateY(0);
@@ -474,5 +472,39 @@ html.dark-mode .hero::before {
 }
 
 html.dark-mode .hero {
-  background-image: url('/back-home-dark.webp');
+  background-image: url('/back-home-dark.jpg');
+}
+/* Barra de progresso */
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #2563eb, #60a5fa);
+  z-index: 9999;
+  transition: width 0.1s ease-out;
+  box-shadow: 0 0 4px rgba(37, 99, 235, 0.5);
+}
+
+/* Grid de fundo suave */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    linear-gradient(rgba(37, 99, 235, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(37, 99, 235, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Versão escura */
+html.dark-mode body::before {
+  background-image: 
+    linear-gradient(rgba(96, 165, 250, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(96, 165, 250, 0.04) 1px, transparent 1px);
 }

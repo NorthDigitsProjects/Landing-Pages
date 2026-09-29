@@ -1,4 +1,3 @@
-
 .rodape {
   background-color: #000449;
   color: #94a3b8;
@@ -64,6 +63,24 @@
   color: #a0aec0;
 }
 
+.footer-logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* padrão: alinhado à esquerda no desktop */
+}
+
+.footer-logo-container p {
+  text-align: left; /* texto alinhado à esquerda no desktop */
+}
+
+.footer-logo {
+  width: 250px;
+  height: auto;
+  max-height: 100px;
+  object-fit: contain;
+}
+
+/* Tablet: duas colunas */
 @media (max-width: 900px) {
   .rodape-conteudo {
     grid-template-columns: repeat(2, 1fr);
@@ -72,6 +89,7 @@
   }
 }
 
+/* Mobile: uma coluna e centralização do container do logo */
 @media (max-width: 600px) {
   .rodape-conteudo {
     grid-template-columns: 1fr;
@@ -79,20 +97,26 @@
     gap: 1.2rem;
     padding: 30px 20px;
   }
+
   .rodape p {
     justify-content: center;
   }
+
   .social-icons {
     justify-content: center;
   }
-}
 
-
-@media (max-width: 600px) {
+  /* Centraliza o círculo e o texto */
   .footer-logo-container {
+    align-items: center;
+  }
+
+  .footer-logo-container p {
     text-align: center;
   }
-  .footer-logo {
+
+ 
+  .footer-logo-container > div {
     margin-left: auto;
     margin-right: auto;
   }
