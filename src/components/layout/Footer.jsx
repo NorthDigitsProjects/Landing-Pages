@@ -186,9 +186,9 @@ const Footer = () => {
           >
             {[
               { href: 'https://wa.me/258840000000', icon: <FaWhatsapp size={18} /> },
-              { href: 'https://facebook.com/northdigits', icon: <FaFacebook size={18} /> },
+              { href: 'https://www.facebook.com/share/18RsuYJ3kL/?mibextid=wwXIfr', icon: <FaFacebook size={18} /> },
               { href: 'https://instagram.com/northdigits', icon: <FaInstagram size={18} /> },
-              { href: 'https://www.linkedin.com/in/northdigitsmoz', icon: <FaLinkedin size={18} /> },
+              { href: 'https://www.linkedin.com/company/north-holistic-digital-tech-solutions/', icon: <FaLinkedin size={18} /> },
             ].map(({ href, icon }) => (
               <a
                 key={href}

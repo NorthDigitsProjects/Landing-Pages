@@ -132,8 +132,8 @@ const MultiStepLoader = ({ steps, loading, onComplete, onClose }) => {
 const SOCIAL_LINKS = [
   { label: 'WhatsApp', icon: <FaWhatsapp size={18} />, href: 'https://wa.me/258840000000', color: '#25D366' },
   { label: 'Instagram', icon: <FaInstagram size={18} />, href: 'https://instagram.com/northdigits', color: '#E1306C' },
-  { label: 'Facebook', icon: <FaFacebook size={18} />, href: 'https://facebook.com/northdigits', color: '#1877F2' },
-  { label: 'LinkedIn', icon: <FaLinkedin size={18} />, href: 'https://linkedin.com/company/northdigits', color: '#0A66C2' },
+  { label: 'Facebook', icon: <FaFacebook size={18} />, href: 'https://www.facebook.com/share/18RsuYJ3kL/?mibextid=wwXIfr', color: '#1877F2' },
+  { label: 'LinkedIn', icon: <FaLinkedin size={18} />, href: 'https://www.linkedin.com/company/north-holistic-digital-tech-solutions/', color: '#0A66C2' },
 ];
 
 const Contacto = () => {

@@ -99,9 +99,9 @@ const Header = () => {
           </div>
           <div className="nd-topbar-social">
             <a href="https://wa.me/258841234567" target="_blank" rel="noopener noreferrer"><FaWhatsapp size={13} /></a>
-            <a href="https://facebook.com/northdigits" target="_blank" rel="noopener noreferrer"><FaFacebook size={13} /></a>
+            <a href="https://www.facebook.com/share/18RsuYJ3kL/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer"><FaFacebook size={13} /></a>
             <a href="https://instagram.com/northdigits" target="_blank" rel="noopener noreferrer"><FaInstagram size={13} /></a>
-            <a href="https://www.linkedin.com/in/northdigitsmoz" target="_blank" rel="noopener noreferrer"><FaLinkedin size={13} /></a>
+            <a href="https://www.linkedin.com/company/north-holistic-digital-tech-solutions/" target="_blank" rel="noopener noreferrer"><FaLinkedin size={13} /></a>
           </div>
         </div>
       </div>
@@ -189,9 +189,9 @@ const Header = () => {
 
         <div className="nd-drawer-socials">
           <a href="https://wa.me/258841234567" target="_blank" rel="noopener noreferrer"><FaWhatsapp size={18} /></a>
-          <a href="https://facebook.com/northdigits" target="_blank" rel="noopener noreferrer"><FaFacebook size={18} /></a>
+          <a href="https://www.facebook.com/share/18RsuYJ3kL/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer"><FaFacebook size={18} /></a>
           <a href="https://instagram.com/northdigits" target="_blank" rel="noopener noreferrer"><FaInstagram size={18} /></a>
-          <a href="https://www.linkedin.com/in/northdigitsmoz" target="_blank" rel="noopener noreferrer"><FaLinkedin size={18} /></a>
+          <a href="https://www.linkedin.com/company/north-holistic-digital-tech-solutions/" target="_blank" rel="noopener noreferrer"><FaLinkedin size={18} /></a>
         </div>
       </nav>
     </>

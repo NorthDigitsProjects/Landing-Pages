@@ -294,7 +294,7 @@ const Sobre = () => {
         {modalAberto && (
           <div style={styles.modalOverlay} onClick={() => setModalAberto(false)}>
             <img
-              src="/CEO-north.webp"
+              src="/ceo-grande.webp"
               alt="Inocêncio Nanlelo - CEO ampliado"
               style={styles.modalImagem}
               onClick={(e) => e.stopPropagation()}
