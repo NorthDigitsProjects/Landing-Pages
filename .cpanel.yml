@@ -1,6 +1,5 @@
-
+---
 deployment:
   tasks:
     - export DEPLOYPATH=/home/northdig/public_html/
-    - /bin/rm -rf $DEPLOYPATH/*
-    - /bin/cp -R dist/* $DEPLOYPATH
+    - /usr/bin/rsync -a --delete --exclude='.well-known' --exclude='cgi-bin' dist/ $DEPLOYPATH
